@@ -399,3 +399,32 @@ footer {
   }
 }
 
+/* =========================================
+   SWITCH TREE → RECTANGULAR CARD
+   ========================================= */
+
+.tree-card {
+  /* Remove tree clipping */
+  clip-path: none;
+
+  /* Rectangular glass card */
+  border-radius: 24px;
+
+  /* Auto height so nothing is hidden */
+  min-height: unset;
+  height: auto;
+
+  /* Safe padding */
+  padding: 32px 22px 28px;
+
+  /* Slightly wider for comfort */
+  max-width: 420px;
+  width: 92vw;
+
+  /* Keep greenish glass look */
+  background: linear-gradient(
+    180deg,
+    rgba(80, 160, 110, 0.35),
+    rgba(40, 120, 80, 0.25)
+  );
+}
