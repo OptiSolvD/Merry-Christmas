@@ -37,15 +37,44 @@ function toggleInfo() {
 }
 
 // Santa Calling Animation
+
+// 🎅 Santa Blessings List
+const santaBlessings = [
+  "May your heart always be kind and your dreams always be big ✨",
+  "May joy, peace, and love follow you wherever you go 🎄",
+  "Never stop believing in magic — especially the magic inside you 🌟",
+  "May your days be filled with laughter and warm memories ❄️",
+  "Be brave, be honest, and always help others ❤️",
+  "May Santa bring you happiness not just today, but every day 🎁",
+  "You are loved more than you know, my dear child 🤍"
+];
 function callFromSanta() {
   const box = document.getElementById("santa-call");
-  box.innerText = `🎅 You are loved more than you know, my dear child., ${name} 🎄`;
+
+  // Pick random blessing
+  const randomBlessing =
+    santaBlessings[Math.floor(Math.random() * santaBlessings.length)];
+
+  // Personalize with name
+  box.innerText = `🎅 ${randomBlessing}`;
+
   box.classList.remove("hidden");
 
+  // Auto hide after 4 seconds
   setTimeout(() => {
     box.classList.add("hidden");
-  }, 4000);
+  }, 6000);
 }
+
+// function callFromSanta() {
+//   const box = document.getElementById("santa-call");
+//   box.innerText = `🎅 You are loved more than you know, my dear child., ${name} 🎄`;
+//   box.classList.remove("hidden");
+
+//   setTimeout(() => {
+//     box.classList.add("hidden");
+//   }, 4000);
+// }
 
 // Falling Name
 setInterval(() => {
@@ -67,7 +96,7 @@ function shareWhatsApp() {
   );
 }
 function goToStories() {
-  window.location.href = "stories.html";
+  window.location.href = "stories.html" + window.location.search;
 }
 /* =========================================
    🎁 GIFT + NAME RAIN LOGIC
@@ -99,6 +128,26 @@ setInterval(() => {
 
   setTimeout(() => wrapper.remove(), 10000);
 }, 1000);
+// different themes
+
+function setTheme(theme) {
+  document.body.classList.remove("theme-night", "theme-snow", "theme-candy");
+
+  if (theme !== "night") {
+    document.body.classList.add(`theme-${theme}`);
+  }
+
+  localStorage.setItem("theme", theme);
+}
+
+// Load saved theme
+window.addEventListener("load", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    setTheme(savedTheme);
+  }
+});
+
 
 
 
