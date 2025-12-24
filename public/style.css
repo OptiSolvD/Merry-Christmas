@@ -1,0 +1,401 @@
+/* =========================================
+   FIX: LAST BUTTON VISIBILITY (MOBILE SAFE)
+   ========================================= */
+
+/* Reduce overall tree height usage */
+.tree-card {
+  min-height: 520px;          /* was 560px */
+  padding-bottom: 20px;      /* bring content up */
+}
+
+/* Reduce space before buttons */
+.tree-card .buttons {
+  margin: 12px 0;            /* was 18px */
+}
+
+/* Make buttons slightly smaller vertically */
+.tree-card button {
+  padding: 8px 14px;         /* was larger */
+}
+
+/* Mobile height safety */
+@media (max-height: 640px) {
+  .tree-card {
+    min-height: 480px;
+    padding-top: 85px;
+  }
+}
+
+@media (max-height: 580px) {
+  .tree-card {
+    transform: scale(0.92);
+  }
+}
+
+
+/* =========================================
+   FINAL FIX — PREVENT TEXT CLIPPING BY TREE
+   ========================================= */
+
+/* Inset all text safely away from slanted edges */
+.tree-card h1,
+.tree-card .subtitle,
+.tree-card .countdown,
+.tree-card footer {
+  max-width: 65%;          /* narrower text column */
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline: 8px;     /* <-- CRITICAL FIX */
+  text-align: center;
+}
+
+/* Subtitle needs extra safety */
+.tree-card .subtitle {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  padding-inline: 10px;    /* extra inset for slanted edge */
+}
+
+/* Heading slightly smaller */
+.tree-card h1 {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* =========================================
+   FINAL TREE TEXT GEOMETRY FIX
+   ========================================= */
+
+/* Push text down into wider tree area */
+.tree-card {
+  padding-top: 95px; /* was 75px */
+}
+
+/* Strong width constraint so text fits triangle */
+.tree-card h1,
+.tree-card .subtitle,
+.tree-card .countdown,
+.tree-card footer {
+  max-width: 70%;          /* tighter than before */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Heading must be smaller + wrapped */
+.tree-card h1 {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* Subtitle */
+.tree-card .subtitle {
+  font-size: 0.78rem;
+}
+
+/* Countdown */
+.tree-card .countdown {
+  font-size: 0.82rem;
+}
+
+/* Buttons text */
+.tree-card button {
+  font-size: 0.75rem;
+}
+
+
+
+
+/* =========================================
+   FINAL TREE TEXT CONSTRAINT FIX
+   ========================================= */
+
+/* Limit text width so it stays inside tree */
+.tree-card h1,
+.tree-card .subtitle,
+.tree-card .countdown,
+.tree-card footer {
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Further reduce heading size for narrow top */
+.tree-card h1 {
+  font-size: 1.3rem;   /* smaller than before */
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* Subtitle smaller */
+.tree-card .subtitle {
+  font-size: 0.8rem;
+}
+
+/* Countdown smaller */
+.tree-card .countdown {
+  font-size: 0.85rem;
+}
+
+/* Buttons text */
+.tree-card button {
+  font-size: 0.78rem;
+}
+
+
+
+
+/* ======================================
+   TEXT SIZE FIX — INSIDE TREE ONLY
+   ====================================== */
+
+/* Main heading inside tree */
+.tree-card h1 {
+  font-size: 1.45rem;   /* reduced from 1.9rem */
+  line-height: 1.25;
+}
+
+/* Subtitle text */
+.tree-card .subtitle {
+  font-size: 0.85rem;
+  margin: 8px 0;
+}
+
+/* Countdown text */
+.tree-card .countdown {
+  font-size: 0.9rem;
+  margin: 10px 0;
+}
+
+/* Info / stories text inside tree */
+.tree-card .info {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Buttons text */
+.tree-card button {
+  font-size: 0.8rem;
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0b1d2a, #020b14);
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Snow */
+.snow::before,
+.snow::after {
+  content: "";
+  position: fixed;
+  top: -100%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(white 2px, transparent 2px);
+  background-size: 45px 45px;
+  animation: snow 22s linear infinite;
+  opacity: 0.35;
+}
+
+.snow::after {
+  animation-duration: 40s;
+  opacity: 0.2;
+}
+
+@keyframes snow {
+  to { transform: translateY(100%); }
+}
+
+/* Tree Card */
+.tree-card {
+  width: min(92vw, 380px);
+  min-height: 560px;
+  padding: 75px 28px 35px;
+  text-align: center;
+
+  background: linear-gradient(
+    180deg,
+    rgba(80, 160, 110, 0.35),
+    rgba(40, 120, 80, 0.18)
+  );
+
+  backdrop-filter: blur(22px);
+  border: 2px solid rgba(120, 220, 160, 0.45);
+  border-radius: 28px;
+
+  clip-path: polygon(
+    50% 0%,
+    88% 20%,
+    74% 20%,
+    96% 44%,
+    78% 44%,
+    100% 72%,
+    0% 72%,
+    22% 44%,
+    4% 44%,
+    26% 20%,
+    12% 20%
+  );
+
+  box-shadow:
+    0 0 60px rgba(100, 220, 140, 0.6),
+    inset 0 0 30px rgba(200,255,220,0.25);
+
+  z-index: 2;
+}
+
+h1 {
+  font-size: 1.9rem;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+}
+
+.subtitle {
+  margin: 12px 0;
+  color: #eafff1;
+}
+
+.countdown {
+  margin: 14px 0;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.buttons {
+  margin: 18px 0;
+}
+
+button {
+  margin: 7px;
+  padding: 11px 22px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #eafff1, #b9f2d2);
+  color: #044d2f;
+  font-weight: 700;
+}
+
+button:hover {
+  transform: scale(1.06);
+}
+
+.info {
+  margin-top: 14px;
+  font-size: 0.9rem;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  margin-top: 18px;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* Falling Name */
+#name-rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.falling-name {
+  position: absolute;
+  top: -50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #eaffc2;
+  text-shadow: 0 0 12px #9effa6;
+  animation: fallName linear forwards;
+}
+
+@keyframes fallName {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* Santa Call Bubble */
+#santa-call {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 16px 24px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  box-shadow: 0 0 25px rgba(255,255,255,0.3);
+  animation: popUp 0.6s ease;
+  z-index: 5;
+}
+
+@keyframes popUp {
+  from {
+    transform: translateX(-50%) scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+/* =========================================
+   🎁 GIFT + NAME COMBINED RAIN
+   ========================================= */
+
+.falling-gift-wrapper {
+  position: absolute;
+  top: -60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  animation: giftFall linear forwards;
+  z-index: 0; /* behind tree */
+}
+
+.falling-gift-icon {
+  font-size: 1.6rem;
+}
+
+.falling-gift-name {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #eaffc2;
+  text-shadow: 0 0 8px rgba(160,255,180,0.9);
+  white-space: nowrap;
+}
+
+/* Reuse same fall animation */
+@keyframes giftFall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+

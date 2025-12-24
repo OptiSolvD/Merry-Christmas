@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Merry Christmas 🎄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Gift Rain -->
+<div id="gift-rain"></div>
+
+
+  <!-- Snow -->
+  <div class="snow"></div>
+
+  <!-- Falling Name -->
+  <div id="name-rain"></div>
+
+  <!-- Santa Call Bubble -->
+  <div id="santa-call" class="hidden">🎅</div>
+
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Tree Card -->
+  <div class="tree-card">
+    <h1>🎄 Merry Christmas,<br><span id="username">Friend</span> 🎅</h1>
+    <p class="subtitle">May your holidays be full of joy & warmth ✨</p>
+
+    <p class="countdown" id="countdown"></p>
+
+    <div class="buttons">
+      <button onclick="goToStories()">🎁 Christmas Stories</button>
+    <button onclick="toggleMusic()">🎵 Play / Pause</button>
+      <button onclick="callFromSanta()">🎅 Santa's Blessing</button>
+    </div>
+
+    <div id="info" class="info hidden">
+      <p>🎄 Christmas trees symbolize life and hope.</p>
+      <p>🧦 Stockings come from Saint Nicholas legend.</p>
+      <p>🎅 Santa is inspired by Saint Nicholas from Turkey.</p>
+    </div>
+
+    <footer>❄ Made with ❤️ by Raj ❄</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
