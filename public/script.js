@@ -25,11 +25,44 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Music
+// function toggleMusic() {
+//   const music = document.getElementById("music");
+//   music.volume = 0.4;
+//   music.paused ? music.play() : music.pause();
+// }
+//updated music
 function toggleMusic() {
   const music = document.getElementById("music");
-  music.volume = 0.4;
-  music.paused ? music.play() : music.pause();
+
+  if (music.paused) {
+    music.play();
+    localStorage.setItem("musicPlaying", "true");
+  } else {
+    music.pause();
+    localStorage.setItem("musicPlaying", "false");
+  }
+
+  // Save current time
+  localStorage.setItem("musicTime", music.currentTime);
 }
+window.addEventListener("load", () => {
+  const music = document.getElementById("music");
+  if (!music) return;
+
+  const wasPlaying = localStorage.getItem("musicPlaying");
+  const savedTime = localStorage.getItem("musicTime");
+
+  if (savedTime) {
+    music.currentTime = parseFloat(savedTime);
+  }
+
+  if (wasPlaying === "true") {
+    // Small delay to satisfy browser autoplay rules
+    setTimeout(() => {
+      music.play().catch(() => {});
+    }, 300);
+  }
+});
 
 // Info
 function toggleInfo() {
